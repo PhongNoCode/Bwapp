@@ -1,4 +1,4 @@
- <h1>Bwapp</h1>
+<h1>Bwapp</h1>
 
 #Low level
 
@@ -142,8 +142,89 @@ PHP Code Injection
 
   <img width="551" height="178" alt="image" src="https://github.com/user-attachments/assets/7a084423-7437-4a41-a0fb-897cae206245" />
 
-Server-Side Includes (SSI) Injection
-  
+SQL Injection (GET/Search)
+
+  -First of all, we need to check whether website is vulnerable by using '
+
+  <img width="836" height="271" alt="image" src="https://github.com/user-attachments/assets/e48abca9-ba83-4a0d-9594-4a2029e0ab51" />
+
+  -After that, we can use true condition to list all information in the table
+
+  <img width="837" height="705" alt="image" src="https://github.com/user-attachments/assets/24f7f008-619f-44d5-ad72-1481583e2f21" />
+
+  -Next, we use " 'order by (1,2,3,...)-- - " until the website not inform "Error: The used SELECT statements have a different number of columns" (the correct colums is 7)
+
+  <img width="850" height="707" alt="image" src="https://github.com/user-attachments/assets/ccd23325-436c-4d2c-8d11-8dad5db0fbbe" />
+
+  -If we want to show sensitve information, first thing we need to know is the table contains such infomation
+
+  -To do that, we can use " 'UNION SELECT 1, table_name, 3, 4, 5, 6, 7 FROM information_schema.tables WHERE table_schema = database()-- -" to show all tables in the schema
+
+  <img width="817" height="827" alt="image" src="https://github.com/user-attachments/assets/179b3506-8503-4b49-a032-3af4763cbd8d" />
+
+ -Why we put table_name into the second position? This is because when you use " 'UNION SELECT 1, 2, 3, 4, 5, 6, 7 FROM information_schema.tables WHERE table_schema = database()-- - ", you will see the number pop up on your screen. They are the columns displayed on the screen
+
+ <img width="817" height="258" alt="image" src="https://github.com/user-attachments/assets/0be01bcd-76a1-4409-95c0-4822999344d1" />
+
+-You can see although we know the table has 7 columns but just 4 of them are displayed (2,3,5,4). Thus, if you put table_name into the columns instead of them, you will not see anything.
+
+-Moreover, the reason why I use "FROM information_schema.tables" is that this schema stores all tables and "WHERE table_schema = database()" will choose the current database (Bwapp)
+
+-Ok, let's move on to the next step, when we select table_name, we need to focus on a table that may contains sensitive information(in this case is users table)
+
+<img width="817" height="251" alt="image" src="https://github.com/user-attachments/assets/746ae1b3-70b8-4547-bed3-b822c8425a86" />
+
+-Next, we need to know what are the names of all columns in this table by using " 'union select 1, column_name,3,4,5,6,7 from information_schema.columns where table_schema = database()-- -"
+
+<img width="822" height="1042" alt="image" src="https://github.com/user-attachments/assets/9afecf5b-e0fd-49ed-b41b-a0dae2145a06" />
+
+-Why this table has many columns but we just need to use 1,...7? This is because the select command of the website just use 7 of them.
+
+-Now, we can select many columns that you think it is worth. For me, I will choose id, login, password, and secret
+
+-So the command is " 'union select 1, id, login, password, secret, 6, 7 from users-- - "
+
+<img width="823" height="153" alt="image" src="https://github.com/user-attachments/assets/903119af-c8fb-4ce9-8e94-7b4061152481" />
+
+-Oh, password is encrypted, how to crack it? We can search Crackstation on the website and use it to crack the hash
+
+<img width="1011" height="370" alt="image" src="https://github.com/user-attachments/assets/c033eaad-0073-4e32-bce2-8787f574f939" />
+
+SQL Injection (POST/Select)
+
+ -There is no site to type, so the idea is use Burp Suite to catch the packet
+
+ -We can check the last command that I explained above
+
+ <img width="1181" height="422" alt="image" src="https://github.com/user-attachments/assets/01dd7c06-41ce-402f-bedb-68b66817d36b" />
+
+ -However, this task is different from other SQLi tasks
+ 
+ <img width="707" height="247" alt="image" src="https://github.com/user-attachments/assets/7d37de49-1578-43bf-b796-b6abda6bc182" />
+
+ -This error means the command is like " select....'1'union select 1, id, login, password, secret, 6, 7 from users-- -' ". it means we need to close the quote before union
+
+ -To fix that, the easiest way is use '' instead of ' and delete number 1
+
+ <img width="1153" height="402" alt="image" src="https://github.com/user-attachments/assets/7970cdde-6499-4b96-9501-3b275237c6e7" />
+
+ -We get it
+
+ <img width="818" height="287" alt="image" src="https://github.com/user-attachments/assets/d6150937-5aa9-423f-b8f2-7a5af0f38280" />
+
+ SQL Injection (AJAX/JSON/jQuery)
+  -Try to type the condition true without enter, we can see it will show us all movies. Therefore, in this case, we just need to use 'union select 1, id, login, password, secret, 6, 7 from users-- -, it will show all
+
+  <img width="973" height="1037" alt="image" src="https://github.com/user-attachments/assets/f1a27645-02f5-481d-85cd-1e0224305bbb" />
+
+
+ 
+
+ 
+
+ 
+
+
 
 
   
