@@ -202,7 +202,7 @@ SQL Injection (POST/Select)
  
  <img width="707" height="247" alt="image" src="https://github.com/user-attachments/assets/7d37de49-1578-43bf-b796-b6abda6bc182" />
 
- -This error means the command is like " select....'1'union select 1, id, login, password, secret, 6, 7 from users-- -' ". it means we need to close the quote before union
+ -This error means the command is like " select....'1'union select 1, id, login, password, secret, 6, 7 from users-- -'lo ". it means we need to close the quote before union
 
  -To fix that, the easiest way is use '' instead of ' and delete number 1
 
@@ -212,13 +212,52 @@ SQL Injection (POST/Select)
 
  <img width="818" height="287" alt="image" src="https://github.com/user-attachments/assets/d6150937-5aa9-423f-b8f2-7a5af0f38280" />
 
- SQL Injection (AJAX/JSON/jQuery)
+SQL Injection (AJAX/JSON/jQuery)
   -Try to type the condition true without enter, we can see it will show us all movies. Therefore, in this case, we just need to use 'union select 1, id, login, password, secret, 6, 7 from users-- -, it will show all
 
   <img width="973" height="1037" alt="image" src="https://github.com/user-attachments/assets/f1a27645-02f5-481d-85cd-1e0224305bbb" />
 
+SQL Injection (Login Form/Hero)
 
- 
+  -This task is easy, you just need to use true condition to login into superhero
+
+  <img width="828" height="323" alt="image" src="https://github.com/user-attachments/assets/15b48be1-d209-4d65-848a-8ad9aa27d5df" />
+  
+SQL Injection (Login Form/User)
+
+  -First, you can create your own user like this picture below
+
+  <img width="768" height="598" alt="image" src="https://github.com/user-attachments/assets/683f657f-b3ae-4d11-9b9f-dda51683199f" />
+
+  -After that, you login into your account. You will see your secret on the screen
+
+  <img width="873" height="412" alt="image" src="https://github.com/user-attachments/assets/415e9a51-7078-4d20-949d-6743bd941a68" />
+
+SQL Injection - Stored (Blog)
+
+  -First, I test with ' and you can see it inform an error
+  
+  <img width="957" height="317" alt="image" src="https://github.com/user-attachments/assets/cfdc3c1c-22bc-4694-a2a2-eddd5f96dc86" />
+
+  -Based on this error, we can use select command to show information in table. The reason I use group_concat is because the website limits the number of parameters is one. Using group_concat helps us get all useful information in just one command
+
+  <img width="976" height="486" alt="image" src="https://github.com/user-attachments/assets/06ae2c1c-a88e-4154-bc87-ec1c4dcfe305" />
+
+SQL Injection - Stored (User-Agent)  
+
+  -First, using Burp Suite to catch the packet
+  
+  -Second, change the User Agent with your own command as the picture below, then forward the packet
+
+  <img width="607" height="467" alt="image" src="https://github.com/user-attachments/assets/c17dfb01-d641-4e96-9f66-ce0de617531a" />
+
+  -Last, go back to the website and you will see information
+
+  <img width="808" height="486" alt="image" src="https://github.com/user-attachments/assets/38a1ca41-fd51-4ccb-9e2e-917b4d84e4e7" />
+
+
+  
+  
 
  
 
