@@ -255,8 +255,28 @@ SQL Injection - Stored (User-Agent)
 
   <img width="808" height="486" alt="image" src="https://github.com/user-attachments/assets/38a1ca41-fd51-4ccb-9e2e-917b4d84e4e7" />
 
+SQL Injection - Blind - Time-Based
 
-  
+  -Check it with simple command " 'or 1=1 and sleep 5-- - ", if the page loads longer than normal, it is vulnerable
+
+  -Next, use sqlmap to scan databases on this page
+
+  <img width="852" height="87" alt="image" src="https://github.com/user-attachments/assets/7ce14089-5de2-4488-936b-430b5ce57a48" />
+
+  <img width="212" height="101" alt="image" src="https://github.com/user-attachments/assets/9c13e8be-7c00-457d-97cb-e7d5dba60813" />
+
+  -When we know databases, we can use this following command to show all tables in it
+
+  <img width="863" height="77" alt="image" src="https://github.com/user-attachments/assets/325a7109-999c-4f92-944d-92456f076680" />
+
+  <img width="177" height="147" alt="image" src="https://github.com/user-attachments/assets/0efbb83b-ae80-4a16-ba84-e56bf75e742e" />
+
+  -Lastly, we can use command to list all columns in the table
+
+  <img width="851" height="77" alt="image" src="https://github.com/user-attachments/assets/9beb8d43-d0d6-4ae2-bb48-a5f8be246c50" />
+
+  <img width="281" height="255" alt="image" src="https://github.com/user-attachments/assets/ae1ecb5e-2dfe-4081-b516-d5e3d1980710" />
+
   
 
  
